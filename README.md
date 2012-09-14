@@ -18,6 +18,7 @@ Table of Contents
 * [POST /api/authenticate/login.json](#authenticate_login_post)
 * [GET /api/authenticate/logout.json](#authenticate_logout)
 * [GET /api/authenticate/signup](#authenticate_signup)
+* [POST /api/authenticate/forgot_password](#authenticate_forgot_password)
 * [GET /api/front/lead_articles.json](#front_lead_articles)
 * [GET /api/front/v2/lead_articles.json](#front_lead_articles_v2)
 * [GET /api/geolocation/teams.json](#geolocation_teams)
@@ -162,6 +163,34 @@ http://bleacherreport.com/api/authenticate/signup?redirect_url=http://bleacherre
 
 A `redirect_url` parameter is mandatory. B/R will redirect the request back to that URL, passing basic information
 from the <a href="#user_user">User API</a> as GET parameters.
+
+<a name="authenticate_forgot_password"></a>
+
+POST /api/authenticate/forgot_password
+----------------------------
+
+### Parameters
+
+* email
+* redirect_url (optional)
+* format (optional) - json or not
+
+### Returns
+
+Either json of success/error, html status of 200 or 404 (for ajax), or redirect.
+
+### HTTP Example
+
+<pre>
+http://bleacherreport.com/api/authenticate/forgot_password.json?email=bherman@bleacherreport.com
+</pre>
+
+### Paramter Info
+
+Email parameter is mandatory.
+
+If requesting json, redirect_url will be ignored.  If non-json and redirect_url, the request will be treated as html and redirect to the specified url.
+If no params, it will be treated as an html request, but only return a status code of 200 for success or 404 for error (which could be an inability to find the email or any other error).
 
 <a name="front_lead_articles"></a>
 
