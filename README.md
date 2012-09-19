@@ -192,6 +192,8 @@ Email parameter is mandatory.
 If requesting json, redirect_url will be ignored.  If non-json and redirect_url, the request will be treated as html and redirect to the specified url.
 If no params, it will be treated as an html request, but only return a status code of 200 for success or 404 for error (which could be an inability to find the email or any other error).
 
+On success, a forgot password email will be triggered.
+
 <a name="front_lead_articles"></a>
 
 GET /api/front/lead_articles.json
