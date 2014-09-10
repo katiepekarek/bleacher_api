@@ -17,7 +17,7 @@ class BleacherApi
       data, old_data = {}, data
       data[type == :get ? :query : :body] = old_data
       output = send(type, "/api/#{path}.json", data)
-      if output.headers['status'].include?('200')
+      if output.code == 200
         output
       else
         false
