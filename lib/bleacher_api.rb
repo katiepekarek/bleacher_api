@@ -12,8 +12,8 @@ class BleacherApi
   include HTTParty
   
   class <<self
-    def call(type, path, data=nil)
-      base_uri BleacherApi::Config.url
+    def call(type, path, data=nil, ssl=false)
+      base_uri BleacherApi::Config.url(nil, ssl)
       data, old_data = {}, data
       data[type == :get ? :query : :body] = old_data
       output = send(type, "/api/#{path}.json", data)
@@ -40,7 +40,7 @@ class BleacherApi
           'user[email]' => email,
           'user[password]' => password,
           'redirect' => nil
-        })
+        }, true)
         if result
           BleacherApi::Config.token result['token']
         end
